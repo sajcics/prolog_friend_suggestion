@@ -1,14 +1,17 @@
 import logging
-import pyxf
-#x = pyxf.xsb('../static/XSB/bin')
+from spade import pyxf 
 
-log = logging.getLogger('prolog')
+# get logger to print logs
+#log = logging.getLogger('hello.prolog')
+xsb = pyxf.xsb('/home/stella/Flora-2/XSB/bin/xsb')
 
-def callProlog():
-    log.error("inside callProlog()")
-#    x.load('osobe')
-#    res = x.query('prijatelj_prijatelja(\'roberto\', X)')
-#    print('Iz XSB:')
-#    for r in res:
-#        print(r['X'])
-#    del x
+def getMyFriends():
+    # define path to xsb
+    
+    logging.debug("inside callProlog()")
+
+
+    xsb.load('osobe.P')
+    results = xsb.query('prijatelj(anica, X)')
+    logging.error("results: %s", results)
+    return results;

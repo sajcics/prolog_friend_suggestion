@@ -1,4 +1,26 @@
 #header_info {
- background-color: lightgray;
- padding: 20px;
+ background-color: #C14343;
+ color: #f5f5f5;
+ text-align: center;
+ padding: 50px;
+}
+
+#description {
+    padding: 50px;
+}
+
+#project {
+    padding: 10px 50px;
+    margin: 0;
+    background: white;
+}
+
+hr {
+    padding: 0;
+    color: rgb(71, 67, 67);
+    margin: 0 50px;
+}
+
+body {
+    background: #f5f5f5;
 }

@@ -4,10 +4,46 @@
   <link rel="stylesheet" type="text/css" href="../static/style.css">
 </head>
   <div id="header_info">
+    <h1>Social networking application using deductive database</h1>
+  </div>
+  <div id="description">
+    <p>This project is created for course "Database theory" at University of Zagreb, Faculty
+    of organisation and informatics on last year of Master study.</p>
+
+    <h2>Description</h2>
+    <p>Project use deductive database to suggest you new friend that are friends of 
+    your friend. Someting like Facebook suggestions. When you add person as your new
+    friend, on backend Prolog will called and return new list of suggestions.</p> 
+
+    <p>Used technologies:</p>
+    <ul>
+      <li>Flask framework - Python</li>
+      <li>Jinja 2 - template engine</li>
+      <li>SPADE for XSB</li>
+      <li>deductive database DATALOG</li>
+      <li>HTML</li>
+      <li>CSS</li>
+    </ul>
+  </div>
+
+  <hr>
+  <div id="project">
     {% if name %}
-      <p>Prijavljen/a si kao : {{name}}</p>
-    {% else %}
-      <p>Nisi prijavljen/a</p>
+      <p>Yourname is : <strong>{{name}}</strong></p>
     {% endif %}
+
+    <br>
+    <p>This is your friends</p>
+    {% for user in users %}
+      <li>{{user.X}}</li>
+    {% endfor %}
+
+    <br>
+    <p>Suggestions</p>
+    {% for user in suggestions %}
+    {% endfor %}
+  </div>
+
+  
   </div>
 </html>
