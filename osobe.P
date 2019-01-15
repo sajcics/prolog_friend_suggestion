@@ -1,0 +1,24 @@
+osoba('marina', []).
+osoba('anica', 'martina').
+osoba('anica', 'dario').
+osoba('anica', 'zlatko').
+osoba('anica', 'vanja').
+osoba('martina', 'goran').
+osoba('martina', 'snjezana').
+osoba('martina', 'dorotea').
+/*osoba('dario', 'snjezana').*/
+osoba('dario', 'daliborka').
+osoba('dario', 'silvia').
+osoba('zlatko', 'natasa').
+osoba('vanja', 'marko').
+osoba('vanja', 'roberto').
+osoba('vanja', 'melita').
+
+/*zelimo ispisati samo prijatelje*/
+prijatelj(X,Y) :- osoba(X,Y).
+prijatelj(X,Y) :- osoba(Y, X).
+
+/*zelimo ispisati prijatelj prijatelja*/
+prijatelj_prijatelja(X,Z) :- prijatelj(X,Y), prijatelj(Y,Z), Z \= X.
+
+/*problem se javlja ako dva prijatelja imaju zajedničkog prijatelja*/

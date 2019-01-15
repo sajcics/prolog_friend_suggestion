@@ -1,0 +1,6 @@
+test_url_properties on http://www.cs.sunysb.edu/~cse532/ where url body is not loaded
+Directory = http%3A%2F%2Fwww.cs.sunysb.edu%2F~cse532
+FileBase = tmpfile
+Suffix = tmp
+Size = 328
+Modified Time = -1

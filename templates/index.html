@@ -1,0 +1,13 @@
+<html>
+<head>
+  <title>Pregled prijatelja</title>
+  <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+  <div id="header_info">
+    {% if name %}
+      <p>Prijavljen/a si kao : {{name}}</p>
+    {% else %}
+      <p>Nisi prijavljen/a</p>
+    {% endif %}
+  </div>
+</html>

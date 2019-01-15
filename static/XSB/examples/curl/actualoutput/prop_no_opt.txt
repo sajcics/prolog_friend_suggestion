@@ -1,0 +1,6 @@
+test_url_properties_no_opt on https://mail.google.com
+Directory = https%3A%2F
+FileBase = mail.google
+Suffix = com
+Size = -1
+Modified Time = -1

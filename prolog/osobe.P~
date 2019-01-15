@@ -1,0 +1,9 @@
+osoba('marina', '').
+osoba('anica', 'martina').
+osoba('anica', 'dario').
+osoba('martina', 'goran').
+osoba('martina', 'snjezana').
+osoba('dario', 'snjezana').
+osoba('dario', 'daliborka').
+
+prijatelj(X,Y) :- osoba(X,Y), osoba(Y,X).
