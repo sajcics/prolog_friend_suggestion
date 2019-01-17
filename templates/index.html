@@ -33,14 +33,15 @@
     {% endif %}
 
     <br>
-    <p>This is your friends</p>
+    <p>This is your friends:</p>
     {% for user in users %}
-      <li>{{user.X}}</li>
+      <li>{{user.F}}</li>
     {% endfor %}
 
     <br>
     <p>Suggestions</p>
     {% for user in suggestions %}
+      <li>{{user.S}}</li>
     {% endfor %}
   </div>
 

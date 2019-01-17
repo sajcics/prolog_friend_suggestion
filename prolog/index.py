@@ -1,17 +1,22 @@
 import logging
 from spade import pyxf 
 
-# get logger to print logs
-#log = logging.getLogger('hello.prolog')
+# load xsb from your computer - have to be installed
+# go to Flora-2 download, unzip and ./runflora after that 
+# run command 'xsb'. If xsb working then change path 
+# in line below
 xsb = pyxf.xsb('/home/stella/Flora-2/XSB/bin/xsb')
 
-def getMyFriends():
+# this function gets friends of default user
+def getMyFriends(user):
     # define path to xsb
-    
-    logging.debug("inside callProlog()")
-
-
     xsb.load('osobe.P')
-    results = xsb.query('prijatelj(anica, X)')
-    logging.error("results: %s", results)
-    return results;
+    results = xsb.query('prijatelj(%s, F)' % user)
+    return results
+
+# this function gets friends of friends which default user is not friend
+def getMySuggestions(user):
+    xsb.load('osobe.P')
+    results = xsb.query('prijatelj_prijatelja(%s, S)' % user)
+    logging.error("results for suggestions: %s", results)
+    return results

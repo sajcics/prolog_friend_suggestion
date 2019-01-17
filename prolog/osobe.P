@@ -6,7 +6,8 @@ osoba('anica', 'vanja').
 osoba('martina', 'goran').
 osoba('martina', 'snjezana').
 osoba('martina', 'dorotea').
-/*osoba('dario', 'snjezana').*/
+osoba('martina', 'dario').
+
 osoba('dario', 'daliborka').
 osoba('dario', 'silvia').
 osoba('zlatko', 'natasa').
@@ -22,3 +23,4 @@ prijatelj(X,Y) :- osoba(Y, X).
 prijatelj_prijatelja(X,Z) :- prijatelj(X,Y), prijatelj(Y,Z), Z \= X.
 
 /*problem se javlja ako dva prijatelja imaju zajedničkog prijatelja*/
+/*osoba('dario', 'snjezana'). loop provjeriti */

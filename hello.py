@@ -1,7 +1,7 @@
 #to run file call: export FLASK_APP=hello.py
 #flask run
 from flask import Flask, render_template
-from prolog.index import getMyFriends
+from prolog.index import getMyFriends, getMySuggestions
 
 import sys
 import logging
@@ -10,6 +10,7 @@ import logging
 # module run as main program (run in terminal e.g. python hello.py)
 # flask constructor takes the name of current module from static variable __name__
 app = Flask(__name__)
+default_user = 'anica'
 
 # that will run when we run python program from
 # here we exeminate if script is being run directly
@@ -24,14 +25,14 @@ if __name__ == "__main__":
 # app.route is decorator to function that represents URL that is binded to function
 @app.route('/')
 def hello_world(name=None):
-    myfriends = getMyFriends()
+    myfriends = getMyFriends(default_user)
+    suggestions = getMySuggestions(default_user)
 
-    return render_template('index.html', name="anica", users=myfriends)
+    return render_template('index.html', name=default_user, users=myfriends, suggestions=suggestions)
 
-#@app.route('/<username>')
-#def username_profile(username):
-#    return render_template('index.html', name=username)
+@app.route('/<username>')
+def username_profile(username):
+    myfriends = getMyFriends(username)
+    suggestions = getMySuggestions(username)
 
-
-#def prikazi_prijatelje(name):
-#    return x.query('prijatelj('+name+', X)')*/
+    return render_template('index.html', name=username, users=myfriends, suggestions=suggestions)

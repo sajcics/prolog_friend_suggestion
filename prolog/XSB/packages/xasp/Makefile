@@ -1,1 +1,0 @@
-Flora-2home/kifer/XSB/XSB-git/XSB/config/x86_64-unknown-linux-gnu/smoMakefile

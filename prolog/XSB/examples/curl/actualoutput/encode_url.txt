@@ -1,4 +1,0 @@
-test_encode_url on http://www.cs.sunysb.edu/~cse532/first.html
-Directory = http%3A%2F%2Fwww.cs.sunysb.edu%2F~cse532
-File = first
-Suffix = html

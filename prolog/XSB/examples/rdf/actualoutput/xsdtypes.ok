@@ -1,3 +1,0 @@
-----------sgml----------
-
-element(&rdf; : RDF,[xmlns : rdf = &rdf;,xmlns : xsd = &xsd;,xmlns : t = &t;],[element(&t; : test,[&rdf; : ID = id1],[element(&t; : int,[&rdf; : datatype = &xsd;int],[42])])])
