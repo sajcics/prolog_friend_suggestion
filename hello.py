@@ -32,6 +32,10 @@ def hello_world(name=None):
 
 @app.route('/<username>')
 def username_profile(username):
+    username = "\'%s\'" % username
+
+    logging.error(username)
+
     myfriends = getMyFriends(username)
     suggestions = getMySuggestions(username)
 

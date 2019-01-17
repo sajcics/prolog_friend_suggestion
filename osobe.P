@@ -1,24 +1,33 @@
-osoba('marina', []).
-osoba('anica', 'martina').
-osoba('anica', 'dario').
-osoba('anica', 'zlatko').
-osoba('anica', 'vanja').
-osoba('martina', 'goran').
-osoba('martina', 'snjezana').
-osoba('martina', 'dorotea').
-/*osoba('dario', 'snjezana').*/
-osoba('dario', 'daliborka').
-osoba('dario', 'silvia').
-osoba('zlatko', 'natasa').
-osoba('vanja', 'marko').
-osoba('vanja', 'roberto').
-osoba('vanja', 'melita').
+friends('anica','martina').
+friends('anica','dario').
+friends('anica','zlatko').
+friends('anica','vanja').
+friends('martina','goran').
+friends('martina','snjezana').
+friends('martina','dorotea').
+friends('dario','daliborka').
+friends('dario','silvia').
+friends('zlatko','natasa').
+friends('vanja','marko').
+friends('vanja','roberto').
+friends('vanja','melita').
+friends('vanja', 'anica').
+friends('martina', 'vanja').
 
-/*zelimo ispisati samo prijatelje*/
-prijatelj(X,Y) :- osoba(X,Y).
-prijatelj(X,Y) :- osoba(Y, X).
+connection(X,Y) :- friends(X,Y).
+connection(X,Y) :- friends(Y, X).
 
-/*zelimo ispisati prijatelj prijatelja*/
-prijatelj_prijatelja(X,Z) :- prijatelj(X,Y), prijatelj(Y,Z), Z \= X.
+not_member(_, []).
+not_member(X, [Head|Tail]) :-
+    not_member(X, Tail),
+    X \= Head.
+      
 
-/*problem se javlja ako dva prijatelja imaju zajedničkog prijatelja*/
+check([], []).
+check([G|T], List) :-
+      check(T, List2),
+      (   not_member(G, List2) ->  
+      		List = [G|List2]
+      ).
+
+all_friends(X, List) :- setof(_Y, connection(X,_Y), L), check(L, List2), List = List2.
