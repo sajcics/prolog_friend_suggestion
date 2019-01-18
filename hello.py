@@ -28,7 +28,13 @@ def hello_world(name=None):
     myfriends = getMyFriends(default_user)
     suggestions = getMySuggestions(default_user)
 
-    return render_template('index.html', name=default_user, users=myfriends, suggestions=suggestions)
+    newSuggestions = []
+    # because \+ member not working, check redudancy
+    for user in suggestions:
+        if user not in myfriends and user != default_user:
+            newSuggestions.append(user)
+
+    return render_template('index.html', name=default_user, users=myfriends, suggestions=newSuggestions)
 
 @app.route('/<username>')
 def username_profile(username):
@@ -37,6 +43,12 @@ def username_profile(username):
     logging.error(username)
 
     myfriends = getMyFriends(username)
-    suggestions = getMySuggestions(username)
+    #suggestions = getMySuggestions(username)
 
-    return render_template('index.html', name=username, users=myfriends, suggestions=suggestions)
+    newSuggestions = []
+    # because \+ member not working, check redudancy
+    #for user in suggestions:
+    #    if user not in myfriends and user != username:
+    #        newSuggestions.append(user)
+
+    return render_template('index.html', name=username, users=myfriends, suggestions=newSuggestions)

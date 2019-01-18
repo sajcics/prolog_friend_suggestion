@@ -1,4 +1,4 @@
-friends('anica','martina').
+ friends('anica','martina').
 friends('anica','dario').
 friends('anica','zlatko').
 friends('anica','vanja').
@@ -17,6 +17,8 @@ friends('martina', 'vanja').
 connection(X,Y) :- friends(X,Y).
 connection(X,Y) :- friends(Y, X).
 
+suggestion(X, Z) :- friends(X, Y) , friends(Y, Z).
+
 not_member(_, []).
 not_member(X, [Head|Tail]) :-
     not_member(X, Tail),
@@ -30,4 +32,18 @@ check([G|T], List) :-
       		List = [G|List2]
       ).
 
-all_friends(X, List) :- setof(_Y, connection(X,_Y), L), check(L, List2), List = List2.
+check_list([], _, []).
+check_list([G|T], Friends, List) :-
+    check_list(T, Friends, List2),
+    member(G, Friends), !,
+    List = [G|List2].
+
+all_friends(X, List) :- 
+    setof(_Y, connection(X,_Y), List2), 
+    check(List2, List3), 
+    List = List3.
+
+all_suggestions(X, List) :-
+    setof(_Y, suggestion(X, _Y), List2),
+    check(List2, List3),
+    List = List3.
