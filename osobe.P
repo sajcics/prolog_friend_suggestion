@@ -1,4 +1,6 @@
- friends('anica','martina').
+:- dynamic friends/2.
+
+friends('anica','martina').
 friends('anica','dario').
 friends('anica','zlatko').
 friends('anica','vanja').

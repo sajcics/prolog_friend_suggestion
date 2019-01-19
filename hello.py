@@ -1,7 +1,7 @@
 #to run file call: export FLASK_APP=hello.py
 #flask run
-from flask import Flask, render_template
-from prolog.index import getMyFriends, getMySuggestions
+from flask import Flask, render_template, request
+from prolog.index import getMyFriends, getMySuggestions, addNewFriend
 
 import sys
 import logging
@@ -52,3 +52,24 @@ def username_profile(username):
     #        newSuggestions.append(user)
 
     return render_template('index.html', name=username, users=myfriends, suggestions=newSuggestions)
+
+@app.route('/add', methods=['POST'])
+def add_friend():
+    result = request.form.to_dict()
+    
+    if len(result.keys()) > 0:
+        user = result.keys()[0]
+        friend = result[user]
+
+    addNewFriend(user, friend)
+    myfriends = getMyFriends(default_user)
+    suggestions = getMySuggestions(default_user)
+
+    newSuggestions = []
+    
+    # because \+ member not working, check redudancy
+    for user in suggestions:
+        if user not in myfriends and user != default_user:
+            newSuggestions.append(user)
+
+    return render_template('index.html', name=user, users=myfriends, suggestions=newSuggestions)

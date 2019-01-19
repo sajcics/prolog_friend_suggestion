@@ -2,6 +2,11 @@
 <head>
   <title>Pregled prijatelja</title>
   <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+  <script>
+
+
+  </script>
 </head>
   <div id="header_info">
     <h1>Social networking application using deductive database</h1>
@@ -33,16 +38,27 @@
     {% endif %}
 
     <br>
-    <p>This is your friends:</p>
-    {% for user in users %}
-        <li>{{user}}</li> 
-    {% endfor %}
-
+    <h2>My friends:</h2>
+    <div class="user-box-container">
+      {% for user in users %}
+        <div class="user-box">
+          <p>{{user}}</p>
+        </div>  
+      {% endfor %}
+    </div>
     <br>
-    <p>Suggestions</p>
-    {% for user in suggestions %}
-      <li>{{user}}</li>
-    {% endfor %}
+
+    <h2>Suggestions</h2>
+    <div class="user-box-container">
+      <form action="/add" method="post">
+        {% for user in suggestions %}
+          <div class="user-box">
+            <p>{{user}}</p> 
+            <button type="submit" name={{name}} value={{user}}>Add new friend</button>
+          </div>
+        {% endfor %}
+      </form>
+    </div>
   </div>
 
   

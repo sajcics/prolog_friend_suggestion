@@ -11,7 +11,7 @@ xsb.load('osobe.P')
 
 # this function gets friends of default user
 def getMyFriends(user):
-    
+ 
     # define path to xsb
     results = xsb.query('all_friends(%s, X)' % user) 
 
@@ -31,6 +31,12 @@ def getMySuggestions(user):
 
     logging.error("results for suggestions: %s", result)
     return result
+
+def addNewFriend(user, friend):
+    query = "asserta(friends('%s', '%s'))." % (user, friend)
+    logging.error("query: %s", query)
+    result = xsb.query(query)
+
 
 def parseResultToArray(dictData):
     if type(dictData) == type(True) or type(dictData) == type(False):
