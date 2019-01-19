@@ -10,7 +10,7 @@ import logging
 # module run as main program (run in terminal e.g. python hello.py)
 # flask constructor takes the name of current module from static variable __name__
 app = Flask(__name__)
-default_user = 'anica'
+default_user = 'martina'
 
 # that will run when we run python program from
 # here we exeminate if script is being run directly
@@ -24,36 +24,26 @@ if __name__ == "__main__":
 
 # app.route is decorator to function that represents URL that is binded to function
 @app.route('/')
-def hello_world(name=None):
+def hello_world():
     myfriends = getMyFriends(default_user)
     suggestions = getMySuggestions(default_user)
 
-    newSuggestions = []
-    # because \+ member not working, check redudancy
-    for user in suggestions:
-        if user not in myfriends and user != default_user:
-            newSuggestions.append(user)
+    newSuggestions = removeFriendsFromSuggestions(myfriends, suggestions, default_user)
 
     return render_template('index.html', name=default_user, users=myfriends, suggestions=newSuggestions)
 
-@app.route('/<username>')
-def username_profile(username):
-    username = "\'%s\'" % username
+@app.route('/<user>')
+def username_profile(user):
+    user = "\'%s\'" % user
 
-    logging.error(username)
+    myfriends = getMyFriends(user)
+    suggestions = getMySuggestions(user)
 
-    myfriends = getMyFriends(username)
-    #suggestions = getMySuggestions(username)
+    newSuggestions = removeFriendsFromSuggestions(myfriends, suggestions, user)
 
-    newSuggestions = []
-    # because \+ member not working, check redudancy
-    #for user in suggestions:
-    #    if user not in myfriends and user != username:
-    #        newSuggestions.append(user)
+    return render_template('index.html', name=user, users=myfriends, suggestions=newSuggestions)
 
-    return render_template('index.html', name=username, users=myfriends, suggestions=newSuggestions)
-
-@app.route('/add', methods=['POST'])
+@app.route('/add/new-user', methods=['POST'])
 def add_friend():
     result = request.form.to_dict()
     
@@ -65,11 +55,16 @@ def add_friend():
     myfriends = getMyFriends(default_user)
     suggestions = getMySuggestions(default_user)
 
-    newSuggestions = []
-    
-    # because \+ member not working, check redudancy
-    for user in suggestions:
-        if user not in myfriends and user != default_user:
-            newSuggestions.append(user)
+    newSuggestions = removeFriendsFromSuggestions
 
     return render_template('index.html', name=user, users=myfriends, suggestions=newSuggestions)
+
+
+def removeFriendsFromSuggestions(myfriends, suggestions, username) :
+    newSuggestions = []
+    
+    for user in suggestions:
+        if user not in myfriends and user != username:
+            newSuggestions.append(user)
+            
+    return newSuggestions

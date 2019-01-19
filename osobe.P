@@ -42,7 +42,7 @@ check_list([G|T], Friends, List) :-
 
 all_friends(X, List) :- 
     setof(_Y, connection(X,_Y), List2), 
-    check(List2, List3), 
+    check(List2, List3),
     List = List3.
 
 all_suggestions(X, List) :-

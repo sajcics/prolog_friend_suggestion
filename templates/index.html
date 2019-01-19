@@ -10,7 +10,11 @@
 </head>
   <div id="header_info">
     <h1>Social networking application using deductive database</h1>
+    <span>author: Stella Sajčić</span>
   </div>
+  
+
+
   <div id="description">
     <p>This project is created for course "Database theory" at University of Zagreb, Faculty
     of organisation and informatics on last year of Master study.</p>
@@ -50,7 +54,7 @@
 
     <h2>Suggestions</h2>
     <div class="user-box-container">
-      <form action="/add" method="post">
+      <form action="/add/new-user" method="post">
         {% for user in suggestions %}
           <div class="user-box">
             <p>{{user}}</p> 

@@ -25,7 +25,7 @@ def getMyFriends(user):
 def getMySuggestions(user):
     results = xsb.query('all_suggestions(%s, X)' % user)
 
-    logging.error("results for suggestions: %s", results)
+    logging.error("results for suggestions: %s", xsb)
     # results data type DICT ->  {'X': ['name', 'name', 'name']}
     result = parseResultToArray(results)
 
