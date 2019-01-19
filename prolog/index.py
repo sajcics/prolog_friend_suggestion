@@ -1,4 +1,3 @@
-import logging
 import types
 from spade import pyxf 
 
@@ -9,33 +8,19 @@ from spade import pyxf
 xsb = pyxf.xsb('/home/stella/Flora-2/XSB/bin/xsb')
 xsb.load('osobe.P')
 
-# this function gets friends of default user
 def getMyFriends(user):
- 
     # define path to xsb
     results = xsb.query('all_friends(%s, X)' % user) 
 
-    # results data type DICT ->  {'X': ['name', 'name', 'name']}
-    result = parseResultToArray(results)
+    return parseResultToArray(results)
 
-    logging.error("results for friends: %s", result)
-    return result
-
-# this function gets friends of friends which default user is not friend
 def getMySuggestions(user):
     results = xsb.query('all_suggestions(%s, X)' % user)
-
-    logging.error("results for suggestions: %s", xsb)
-    # results data type DICT ->  {'X': ['name', 'name', 'name']}
-    result = parseResultToArray(results)
-
-    logging.error("results for suggestions: %s", result)
-    return result
+    return parseResultToArray(results)
 
 def addNewFriend(user, friend):
     query = "asserta(friends('%s', '%s'))." % (user, friend)
-    logging.error("query: %s", query)
-    result = xsb.query(query)
+    xsb.query(query)
 
 
 def parseResultToArray(dictData):
